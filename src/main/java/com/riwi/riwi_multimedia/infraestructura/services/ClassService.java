@@ -34,8 +34,8 @@ public class ClassService implements IClassService{
     // Obtener solo uno
     @Override
     public ClassResponse get(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
+
+        return this.entityToResponse(this.find(id));
     }
 
     // Actualizar
@@ -64,6 +64,7 @@ public class ClassService implements IClassService{
                     .map(this::entityToResponse);
     }
 
+    // Buscar nombre
     @Override
     public String findByNameOrDescription(String name) {
         // TODO Auto-generated method stub
