@@ -34,10 +34,11 @@ public class Student {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "class_id", referencedColumnName = "id")
-    private Class classId;
+    private ClassEntity classId;
 
     @Column(nullable = false)
-    private LocalDateTime createAt;
+    @Builder.Default
+    private LocalDateTime createAt = LocalDateTime.now();
 
     @Column(nullable = false)
     private boolean active;

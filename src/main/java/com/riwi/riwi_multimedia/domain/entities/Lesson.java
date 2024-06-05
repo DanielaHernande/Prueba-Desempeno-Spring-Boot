@@ -16,7 +16,9 @@ import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -37,10 +39,11 @@ public class Lesson {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "class_id", referencedColumnName = "id")
-    private Class classId;
+    private ClassEntity classId;
 
     @Column(nullable = false)
-    private LocalDateTime createAt;
+    @Builder.Default
+    private LocalDateTime createAt = LocalDateTime.now();
 
     @Column(nullable = false)
     private boolean active;
@@ -52,6 +55,7 @@ public class Lesson {
         cascade = CascadeType.ALL,
         orphanRemoval = false
     )
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<Multimedia> multimedias;
-
 }

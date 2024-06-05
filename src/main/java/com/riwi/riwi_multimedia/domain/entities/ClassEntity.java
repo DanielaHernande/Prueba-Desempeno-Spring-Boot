@@ -14,14 +14,16 @@ import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Class {
+public class ClassEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +36,8 @@ public class Class {
     private String description;
 
     @Column(nullable = false)
-    private LocalDateTime createdAt;
+    @Builder.Default
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(nullable = false)
     private boolean active;
@@ -46,6 +49,8 @@ public class Class {
         cascade = CascadeType.ALL,
         orphanRemoval = false
     )
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<Lesson> lessons;
 
     // Student
@@ -55,6 +60,8 @@ public class Class {
         cascade = CascadeType.ALL,
         orphanRemoval = false
     )
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<Student> students;
 
 }
