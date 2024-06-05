@@ -42,9 +42,9 @@ public class Multimedia {
     private Lesson lessonId;
 
     @Column(nullable = false)
-    private LocalDateTime createdId;
+    @Builder.Default
+    private LocalDateTime createdId = LocalDateTime.now();
 
     @Column(nullable = false)
     private boolean active;
-
 }
