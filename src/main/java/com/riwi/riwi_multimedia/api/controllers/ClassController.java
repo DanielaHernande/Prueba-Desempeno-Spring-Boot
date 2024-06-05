@@ -39,5 +39,5 @@ public class ClassController {
     ) {
 
         return ResponseEntity.ok(this.classService.get(id));
-    }
+    } 
 }
